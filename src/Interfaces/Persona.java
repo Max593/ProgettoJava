@@ -3,5 +3,18 @@ package Interfaces;
 /**
  * Created by max on 17/05/17.
  */
-public interface Persona {
+public class Persona {
+    public enum Genders {MALE, FEMALE;}
+    public enum Type {M, A, P, S}
+
+    private Genders gender;
+    private int age = 0;
+    private Type type;
+
+    public Genders getGender() { return gender; }
+    public Type getType() { return type; }
+    public int getAge() { return age; }
+
+    public void setGender(Genders g) { gender = g; }
+    public void setType(Type t) { type = t; }
 }
