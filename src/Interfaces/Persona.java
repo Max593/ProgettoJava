@@ -4,7 +4,7 @@ package Interfaces;
  * Created by max on 17/05/17.
  */
 public class Persona {
-    public enum Genders {MALE, FEMALE;}
+    public enum Genders {MALE, FEMALE}
     public enum Type {M, A, P, S}
 
     private Genders gender;
