@@ -32,6 +32,7 @@ public class Generazione {
         for(int i = 0; i<numeroTipoA; i++) {  listaGenerazione.add(new Femmina(Persona.Types.A)); }
     }
 
+
     //METODI GETTER
     public List<Persona> getlistaGenerazione() { return this.listaGenerazione; }
     public int getNumeroTipoP(){return this.numeroTipoP;}

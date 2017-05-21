@@ -27,11 +27,14 @@ public class Maschio implements Persona {
 
     // CERCA UNA FEMMINA PER ACCOPPIARSI
     public void cercaFemmina(Femmina femmina){
-
-        if (femmina.getType() == Types.P) {
-            System.out.println(" FEMMINA TIPO = P");
-        } else if( femmina.getType() == Types.S) {
-            System.out.println(" FEMMINA TIPO = S");
+        if ((femmina.getType() == Types.P) && (type == Types.M)){
+            System.out.println(" FEMMINA TIPO = P , MASCHIO TIPO M");
+        } else if((femmina.getType() == Types.P) && (type == Types.A)) {
+            System.out.println(" FEMMINA TIPO = P , MASCHIO TIPO A");
+        } else if((femmina.getType() == Types.S) && (type == Types.M)) {
+            System.out.println(" FEMMINA TIPO = S , MASCHIO TIPO M");
+        }else if((femmina.getType() == Types.S) && (type == Types.A)) {
+            System.out.println(" FEMMINA TIPO = S , MASCHIO TIPO A");
         }
     }
     //METODO INFORMAZIONI OGGETTO
