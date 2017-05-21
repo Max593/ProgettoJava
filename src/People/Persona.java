@@ -1,27 +1,21 @@
 package People;
 
-/**
- * Created by max on 17/05/17.
- */
-public class Persona {
-    public enum Genders {MALE, FEMALE}
-    public enum Type {M, A, P, S}
 
-    private Genders gender;
-    private Type type;
-    private int age = 0;
-    private boolean occupato = false;
+public interface Persona{
 
-    public Genders getGender() { return gender; }
-    public Type getType() { return type; }
-    public int getAge() { return age; }
-    public boolean getOccupato() { return occupato; }
+    enum Types {P,S,M,A}
+    enum Genders {FEMALE,MALE}
 
-    public void setGender(Genders g) { gender = g; }
-    public void setType(Type t) { type = t; }
-    public void setOccupato(boolean b) { occupato = b; }
+    // METODI GETTER
+    Types getType();
+    Genders getGender();
+    int getAge();
+    boolean getOccupato( );
 
-    public String toString() {  //Per identificazione semplificata
-        return gender+" "+age+" "+type+" "+occupato;
-    }
+    // METODI SETTER
+    void setType( Types type);
+    void setAge(int a);
+    void setOccupato(boolean b) ;
+
 }
+
