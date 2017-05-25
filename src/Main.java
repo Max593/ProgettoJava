@@ -1,8 +1,4 @@
 import Environment.Generazione;
-import People.Femmina;
-import People.Maschio;
-import People.Persona;
-import com.sun.deploy.security.ValidationState;
 
 /**
  * Created by max on 17/05/17.
