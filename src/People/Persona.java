@@ -1,21 +1,27 @@
 package People;
 
 
-public interface Persona{
+public class Persona {
 
-    enum Types {P,S,M,A}
-    enum Genders {FEMALE,MALE}
+    public enum Types {P,S,M,A}
+    public enum Genders {FEMALE,MALE}
+
+    private Types type;
+    private Genders gender;
+    private int age = 0;  //Age e Occupato sono preimpostati, alla nascita hanno 0 anni e non sono occupati
+    private boolean occupato = false;
 
     // METODI GETTER
-    Types getType();
-    Genders getGender();
-    int getAge();
-    boolean getOccupato( );
+    public Types getType() { return type; }
+    public Genders getGender() { return gender; }
+    public int getAge() { return age; }
+    public boolean getOccupato() { return occupato; }
 
     // METODI SETTER
-    void setType( Types type);
-    void setAge(int a);
-    void setOccupato(boolean b) ;
+    public void setType(Types type) { this.type = type; }
+    public void setGender(Genders g) { this.gender = g; }
+    public void setAge(int a) { this.age = a; }
+    public void setOccupato(boolean b) { this.occupato = b; }
 
 }
 

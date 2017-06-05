@@ -1,18 +1,34 @@
 package Environment;
 
-import java.util.HashMap;
-import java.util.Map;
+import People.Femmina;
+import People.Maschio;
+
+import java.util.*;
 
 public class Popolazione {
 
-    private Map<Integer,Generazione> popolazione = new HashMap<>();
+    private int a;  //Premio generazione figli
+    private int b;  //Costo crescere figli
+    private int c;  //Costo corteggiamento
+    private Generazione gen;
+    private Map<Integer, Generazione> popolazione = new HashMap<>();
 
-    public void addToGen(int g , Generazione generazione) {  //Incompleto
-        if(!popolazione.containsKey(g) ) {
-            popolazione.put(g , generazione);
-        }
+    public Popolazione(int a, int b, int c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        costruisciPopolazione();
+    }
+    public Popolazione() {  //Valori standard di Dawkins
+        this(15, 20, 3);
     }
 
-    public Map<Integer,Generazione> getPopolazione () { return popolazione; }
-
+    public void costruisciPopolazione() {
+        Scanner scan  = new Scanner(System.in);
+        int P = scan.nextInt();
+        int S = scan.nextInt();
+        int M = scan.nextInt();
+        int A = scan.nextInt();
+        gen = new Generazione(P, S, M, A);
+    }
 }
