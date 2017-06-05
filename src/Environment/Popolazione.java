@@ -10,25 +10,40 @@ public class Popolazione {
     private int a;  //Premio generazione figli
     private int b;  //Costo crescere figli
     private int c;  //Costo corteggiamento
-    private Generazione gen;
+    private double Ppay;
+    private double Spay;
+    private double Mpay;
+    private double Apay;
+    //private Generazione gen;
     private Map<Integer, Generazione> popolazione = new HashMap<>();
 
     public Popolazione(int a, int b, int c) {
         this.a = a;
         this.b = b;
         this.c = c;
-        costruisciPopolazione();
     }
     public Popolazione() {  //Valori standard di Dawkins
         this(15, 20, 3);
     }
 
-    public void costruisciPopolazione() {
+    public void costruisciPopolazione() {  //Costruttore iniziale
         Scanner scan  = new Scanner(System.in);
         int P = scan.nextInt();
         int S = scan.nextInt();
         int M = scan.nextInt();
         int A = scan.nextInt();
-        gen = new Generazione(P, S, M, A);
+        Generazione gen = new Generazione(P, S, M, A);
+        popolazione.put(gen.getNumeroGenerazione(), gen);
     }
+
+    /*
+    public void nextGeneration() {
+        int key = 1;
+
+        Generazione gen = popolazione.get(key);
+        List<Maschio> maschi = gen.getListaMaschi();
+        List<Femmina> femmine = gen.getListaFemmine();
+    }
+*/
+
 }

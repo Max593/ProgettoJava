@@ -4,10 +4,13 @@ import People.Femmina;
 import People.Maschio;
 import People.Persona;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class Generazione {
 
+    private static int numGen = 0;
     private int numeroTipoP;
     private int numeroTipoS;
     private int numeroTipoM;
@@ -35,6 +38,11 @@ public class Generazione {
 
         listaGenerazione.addAll(listaMaschi);
         listaGenerazione.addAll(listaFemmine);
+
+        long rand = System.nanoTime();
+        Collections.shuffle(listaFemmine, new Random(rand));
+
+        numGen = numGen+1;
     }
 
 
@@ -42,13 +50,14 @@ public class Generazione {
     public List<Persona> getlistaGenerazione() { return this.listaGenerazione; }
     public List<Maschio> getListaMaschi() { return this.listaMaschi; }
     public List<Femmina> getListaFemmine() { return this.listaFemmine; }
-    public int getNumeroTipoP(){return this.numeroTipoP;}
-    public int getNumeroTipoS(){return this.numeroTipoS;}
-    public int getNumeroTipoM(){return this.numeroTipoM;}
-    public int getNumeroTipoA(){return this.numeroTipoA;}
-    public int getNumeroMaschi(){return this.numeroMaschi;}
-    public int getNumeroFemmine(){return this.numeroFemmine;}
-    public int getNumeroTotale(){return this.numeroTotale;}
+    public int getNumeroTipoP() {return this.numeroTipoP;}
+    public int getNumeroTipoS() {return this.numeroTipoS;}
+    public int getNumeroTipoM() {return this.numeroTipoM;}
+    public int getNumeroTipoA() {return this.numeroTipoA;}
+    public int getNumeroMaschi() {return this.numeroMaschi;}
+    public int getNumeroFemmine() {return this.numeroFemmine;}
+    public int getNumeroTotale() {return this.numeroTotale;}
+    public int getNumeroGenerazione() { return numGen; }
 
     //METODO INFORMAZIONI OGGETTO
     public String toString() {

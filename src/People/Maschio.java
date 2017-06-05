@@ -1,6 +1,7 @@
 package People;
 
 public class Maschio extends Persona implements Runnable{
+    private Femmina partner;
 
     //COSTRUTTORI
     public Maschio(Types type ) {
@@ -11,6 +12,7 @@ public class Maschio extends Persona implements Runnable{
     //CERCA UNA FEMMINA PER ACCOPPIARSI
     public void cercaFemmina(Femmina femmina){
     }
+    public void setPartner(Femmina f) { partner = f; }
 
     //METODO INFORMAZIONI OGGETTO
     public String toString() {
