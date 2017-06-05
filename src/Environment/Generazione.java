@@ -40,6 +40,7 @@ public class Generazione {
         listaGenerazione.addAll(listaFemmine);
 
         long rand = System.nanoTime();
+        Collections.shuffle(listaMaschi, new Random(rand));
         Collections.shuffle(listaFemmine, new Random(rand));
 
         numGen = numGen+1;
