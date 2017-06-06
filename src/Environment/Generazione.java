@@ -1,8 +1,6 @@
 package Environment;
 
-import People.Femmina;
-import People.Maschio;
-import People.Persona;
+import People.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,7 +8,6 @@ import java.util.Random;
 
 public class Generazione {
 
-    private static int numGen = 0;
     private int numeroTipoP;
     private int numeroTipoS;
     private int numeroTipoM;
@@ -19,7 +16,7 @@ public class Generazione {
     private int numeroFemmine = numeroTipoM + numeroTipoA;
     private int numeroTotale = numeroTipoP + numeroTipoS + numeroTipoM + numeroTipoA;
 
-    private List<Persona> listaGenerazione = new ArrayList<>();
+    private List<Persona> listaGenerazione = new ArrayList<>();  //Maschi + Femmine
     private List<Maschio> listaMaschi = new ArrayList<>();
     private List<Femmina> listaFemmine = new ArrayList<>();
 
@@ -39,18 +36,17 @@ public class Generazione {
         listaGenerazione.addAll(listaMaschi);
         listaGenerazione.addAll(listaFemmine);
 
-        long rand = System.nanoTime();
+        long rand = System.nanoTime()+1;  //Vengono mischiati per semplificare la randomicità di selezione
         Collections.shuffle(listaMaschi, new Random(rand));
+        rand = System.nanoTime()-1;
         Collections.shuffle(listaFemmine, new Random(rand));
-
-        numGen = numGen+1;
     }
 
 
     //METODI GETTER
     public List<Persona> getlistaGenerazione() { return this.listaGenerazione; }
     public List<Maschio> getListaMaschi() { return this.listaMaschi; }
-    public List<Femmina> getListaFemmine() { return this.listaFemmine; }
+    public synchronized List<Femmina> getListaFemmine() { return this.listaFemmine; }
     public int getNumeroTipoP() {return this.numeroTipoP;}
     public int getNumeroTipoS() {return this.numeroTipoS;}
     public int getNumeroTipoM() {return this.numeroTipoM;}
@@ -58,7 +54,6 @@ public class Generazione {
     public int getNumeroMaschi() {return this.numeroMaschi;}
     public int getNumeroFemmine() {return this.numeroFemmine;}
     public int getNumeroTotale() {return this.numeroTotale;}
-    public int getNumeroGenerazione() { return numGen; }
 
     //METODO INFORMAZIONI OGGETTO
     public String toString() {

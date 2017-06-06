@@ -14,8 +14,7 @@ public class Popolazione {
     private double Spay;
     private double Mpay;
     private double Apay;
-    //private Generazione gen;
-    private Map<Integer, Generazione> popolazione = new HashMap<>();
+    private Map<Integer, Generazione> popolazione = new HashMap<>();  //Record di ogni generazione passata, numerata con la chiave
 
     public Popolazione(int a, int b, int c) {
         this.a = a;
@@ -33,17 +32,20 @@ public class Popolazione {
         int M = scan.nextInt();
         int A = scan.nextInt();
         Generazione gen = new Generazione(P, S, M, A);
-        popolazione.put(gen.getNumeroGenerazione(), gen);
+        popolazione.put(1, gen);  //1 dato che è sicuramente la prima
     }
 
-    /*
-    public void nextGeneration() {
-        int key = 1;
+    public void popGrowth() {
+        int nGen = 1;  //Primissima generazione sicuramente la 1
+        while(nGen <= 2000) {
+            Generazione gen = popolazione.get(nGen);
+            List<Maschio> maschi = gen.getListaMaschi();
+            List<Femmina> femmine = gen.getListaFemmine();
+            for(Maschio m : maschi) {  //Si assegna la generazione e li si lascia correre.
 
-        Generazione gen = popolazione.get(key);
-        List<Maschio> maschi = gen.getListaMaschi();
-        List<Femmina> femmine = gen.getListaFemmine();
+            }
+        }
+
     }
-*/
 
 }

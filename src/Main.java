@@ -1,14 +1,13 @@
-import Environment.Generatore;
+import People.Maschio;
+import People.Persona;
 
 /**
  * Created by max on 17/05/17.
  */
 public class Main {
     public static void main(String[] args) {
-
-        Generatore gen = new Generatore(19,50,90,20);
-        gen.stampaListaGenerazione();
-        System.out.printf(gen.toString());
-
+        Maschio m = new Maschio(Persona.Types.M);
+        m.setAge(12);
+        System.out.println(m);
     }
 }
