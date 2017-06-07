@@ -42,7 +42,8 @@ public class Popolazione {
             List<Maschio> maschi = gen.getListaMaschi();
             List<Femmina> femmine = gen.getListaFemmine();
             for(Maschio m : maschi) {  //Si assegna la generazione e li si lascia correre.
-
+                m.setGen(gen);
+                m.run();
             }
         }
 

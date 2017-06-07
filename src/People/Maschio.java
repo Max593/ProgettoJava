@@ -16,7 +16,7 @@ public class Maschio extends Persona implements Runnable{
         setGender(Genders.MALE);
     }
 
-    private void setGen(Generazione gen) { this.gen = gen; }
+    public void setGen(Generazione gen) { this.gen = gen; }
 
     //METODO INFORMAZIONI OGGETTO
     public String toString() {
@@ -35,6 +35,7 @@ public class Maschio extends Persona implements Runnable{
                 index = new Random().nextInt(femmine.size());  //Nuovo valore random
                 female = femmine.get(index);  //Recupera una nuova femmina random
             }
+            female.setImpegnata(true);
             return female;
         };
 
