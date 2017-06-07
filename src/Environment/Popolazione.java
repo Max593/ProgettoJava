@@ -15,7 +15,6 @@ public class Popolazione {
     private int a;  //Premio generazione figli
     private int b;  //Costo crescere figli
     private int c;  //Costo corteggiamento
-    private Random rand;
 
     private Map<Integer, Generazione> popolazione = new HashMap<>();  //Record di ogni generazione passata, numerata con la chiave
 
@@ -40,11 +39,12 @@ public class Popolazione {
 
     public void popGrowth() {
         int nGen = 1;  //Primissima generazione sicuramente la 1
-        while(nGen <= 2000) {
+        while(nGen <= 2000) {  //Numero cicli da diminuire
             System.out.println(nGen);
             Generazione gen = popolazione.get(nGen);
             System.out.println(popolazione.get(nGen));
             List<Femmina> femmine = gen.getListaFemmine();  //Dovrebbe attivarsi il synchronized già da questo accesso
+
             Function<List<Femmina>, Femmina> randPartnerPicker = l -> {  //Cerca la prima femmina non occupata che può trovare
                 int index = new Random().nextInt(femmine.size());  //Valore random
                 Femmina female = femmine.get(index);  //Recupera una femmina random
@@ -62,10 +62,8 @@ public class Popolazione {
                     private Femmina partner;
                     public void run() {
                         partner = randPartnerPicker.apply(femmine);
-                        System.out.println("Inizio run()");
-                        while(partner.isImpegnata()) { partner = randPartnerPicker.apply(femmine); System.out.println("Partner trovato"); }
+                        //while(partner.isImpegnata()) { partner = randPartnerPicker.apply(femmine); System.out.println("Partner trovato"); }
                         if(m.getType() == Persona.Types.M) {
-                            System.out.println("Maschio M");
                             if(partner.getType() == Persona.Types.S) {  //M incontra S
                                 m.setPayoff(a - (b/2));
                                 partner.setPayoff(a - (b/2));
@@ -79,7 +77,6 @@ public class Popolazione {
                         }
                         else {
                             for(int i = 0; i < 20; i++ ) {
-                                System.out.println(i);
                                 if(partner.getType() == Persona.Types.P) {
                                     m.setPayoff(0);
                                     partner.setPayoff(0);
@@ -94,15 +91,12 @@ public class Popolazione {
                                 }
                             }
                         }
-                        System.out.println("Fine Thread");
                     }
                 };
                 service.execute(t);
             }
             service.shutdown();
-            System.out.println("Shutdown");
             while(!service.isTerminated()) {}  //Fa schifo
-            System.out.println("Post shutdown");
             int countP = 0;
             int countS = 0;
             int countM = 0;
@@ -123,15 +117,19 @@ public class Popolazione {
             }
 
             for(int i = 0; i < gen.getNumeroFigli(); i++) {
-                boolean b = rand.nextBoolean();
+                boolean b = new Random().nextBoolean();
                 if(b) {  //Se maschio
                     int totPay = (Mpay.intValue() + Apay.intValue());
-                    if(rand.nextInt(totPay) <= Mpay) { countM += 1; }
+                    if(new Random().nextInt(totPay) <= Mpay) { countM += 1; }
                     else { countA += 1; }
                 }
                 else {  //Se femmina
                     int totPay = (Ppay.intValue() + Spay.intValue());
-                    if(rand.nextInt(totPay) <= Ppay) { countP += 1; }
+                    if(totPay < 0) {
+                        if(new Random().nextInt(Math.abs(totPay)) >= Ppay) { countP += 1; }
+                        else { countS += 1; }
+                    }
+                    else if(new Random().nextInt(totPay) <= Ppay) { countP += 1; }
                     else { countS += 1; }
                 }
             }
