@@ -1,3 +1,4 @@
+import Environment.Popolazione;
 import People.Maschio;
 import People.Persona;
 
@@ -6,8 +7,8 @@ import People.Persona;
  */
 public class Main {
     public static void main(String[] args) {
-        Maschio m = new Maschio(Persona.Types.M);
-        m.setAge(12);
-        System.out.println(m);
+        Popolazione p = new Popolazione();
+        p.costruisciPopolazione();
+        p.popGrowth();
     }
 }

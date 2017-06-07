@@ -15,8 +15,8 @@ public class Generazione {
     private int numeroMaschi = numeroTipoP + numeroTipoS;
     private int numeroFemmine = numeroTipoM + numeroTipoA;
     private int numeroTotale = numeroTipoP + numeroTipoS + numeroTipoM + numeroTipoA;
+    private int numeroFigli = 0;
 
-    private List<Persona> listaGenerazione = new ArrayList<>();  //Maschi + Femmine
     private List<Maschio> listaMaschi = new ArrayList<>();
     private List<Femmina> listaFemmine = new ArrayList<>();
 
@@ -33,9 +33,6 @@ public class Generazione {
         for(int i = 0; i<numeroTipoM; i++) { listaMaschi.add(new Maschio(Persona.Types.M)); }
         for(int i = 0; i<numeroTipoA; i++) { listaMaschi.add(new Maschio(Persona.Types.A)); }
 
-        listaGenerazione.addAll(listaMaschi);
-        listaGenerazione.addAll(listaFemmine);
-
         long rand = System.nanoTime()+1;  //Vengono mischiati per semplificare la randomicità di selezione
         Collections.shuffle(listaMaschi, new Random(rand));
         rand = System.nanoTime()-1;
@@ -44,7 +41,6 @@ public class Generazione {
 
 
     //METODI GETTER
-    public List<Persona> getlistaGenerazione() { return this.listaGenerazione; }
     public List<Maschio> getListaMaschi() { return this.listaMaschi; }
     public synchronized List<Femmina> getListaFemmine() { return this.listaFemmine; }
     public int getNumeroTipoP() {return this.numeroTipoP;}
@@ -54,14 +50,14 @@ public class Generazione {
     public int getNumeroMaschi() {return this.numeroMaschi;}
     public int getNumeroFemmine() {return this.numeroFemmine;}
     public int getNumeroTotale() {return this.numeroTotale;}
+    public synchronized int getNumeroFigli() {return this.numeroFigli;}
+
+    //METODI SETTER
+
+    public synchronized void setNumeroFigli(int n) { numeroFigli += n; }
 
     //METODO INFORMAZIONI OGGETTO
     public String toString() {
         return getClass().getName()+" [ "+"NUMERO TIPO P = "+numeroTipoP+" , NUMERO TIPO S = "+numeroTipoS+" , NUMERO TIPO M = "+numeroTipoM+" ,NUMERO TIPO A = "+numeroTipoA+" ]";
-    }
-
-    public void stampaListaGenerazione () {
-        for (Persona p : listaGenerazione) {System.out.println(p.toString());
-        }
     }
 }
