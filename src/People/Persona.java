@@ -24,7 +24,7 @@ public class Persona {
     public void setGender(Genders g) { this.gender = g; }
     public void setAge(int a) { this.age = a; }
     public void setOccupato(boolean b) { this.occupato = b; }
-    public void setPayoff(double d) { payoff += d; }
+    public synchronized void setPayoff(double d) { payoff += d; }
 
 
 }

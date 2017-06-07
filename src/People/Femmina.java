@@ -14,11 +14,11 @@ public class Femmina extends Persona{
     }
     // METODI GETTER
     public List<Maschio> getOldPartner() { return oldPartner; }
-    public boolean isImpegnata() { return impegnata; }
+    public synchronized boolean isImpegnata() { return impegnata; }
 
     // AGGIUNGI FIGLIO IN LISTA FIGLI
     public void addPartner(Maschio m) { oldPartner.add(m); }
-    public void setImpegnata(boolean b) { impegnata = b; }
+    public synchronized void setImpegnata(boolean b) { impegnata = b; }
 
     //METODO INFORMAZIONI OGGETTO
     public String toString() {

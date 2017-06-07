@@ -62,8 +62,10 @@ public class Popolazione {
                     private Femmina partner;
                     public void run() {
                         partner = randPartnerPicker.apply(femmine);
-                        while(partner.isImpegnata()) { partner = randPartnerPicker.apply(femmine); }
+                        System.out.println("Inizio run()");
+                        while(partner.isImpegnata()) { partner = randPartnerPicker.apply(femmine); System.out.println("Partner trovato"); }
                         if(m.getType() == Persona.Types.M) {
+                            System.out.println("Maschio M");
                             if(partner.getType() == Persona.Types.S) {  //M incontra S
                                 m.setPayoff(a - (b/2));
                                 partner.setPayoff(a - (b/2));
@@ -77,6 +79,7 @@ public class Popolazione {
                         }
                         else {
                             for(int i = 0; i < 20; i++ ) {
+                                System.out.println(i);
                                 if(partner.getType() == Persona.Types.P) {
                                     m.setPayoff(0);
                                     partner.setPayoff(0);
@@ -91,14 +94,15 @@ public class Popolazione {
                                 }
                             }
                         }
-
+                        System.out.println("Fine Thread");
                     }
                 };
                 service.execute(t);
             }
             service.shutdown();
+            System.out.println("Shutdown");
             while(!service.isTerminated()) {}  //Fa schifo
-
+            System.out.println("Post shutdown");
             int countP = 0;
             int countS = 0;
             int countM = 0;
