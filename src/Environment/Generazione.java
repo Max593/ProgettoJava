@@ -12,9 +12,9 @@ public class Generazione {
     private int numeroTipoS;
     private int numeroTipoM;
     private int numeroTipoA;
-    private int numeroMaschi = numeroTipoP + numeroTipoS;
-    private int numeroFemmine = numeroTipoM + numeroTipoA;
-    private int numeroTotale = numeroTipoP + numeroTipoS + numeroTipoM + numeroTipoA;
+    private int numeroMaschi;
+    private int numeroFemmine;
+    private int numeroTotale;
     private int numeroFigli = 0;
 
     private List<Maschio> listaMaschi = new ArrayList<>();
@@ -27,6 +27,9 @@ public class Generazione {
         this.numeroTipoS = numeroTipoS;
         this.numeroTipoM = numeroTipoM;
         this.numeroTipoA = numeroTipoA;
+        this.numeroMaschi = numeroTipoM + numeroTipoA;
+        this.numeroFemmine = numeroTipoP + numeroTipoS;
+        this.numeroTotale = numeroTipoP + numeroTipoS + numeroTipoM + numeroTipoA;
 
         for(int i = 0; i<numeroTipoP; i++) { listaFemmine.add(new Femmina(Persona.Types.P)); }
         for(int i = 0; i<numeroTipoS; i++) { listaFemmine.add(new Femmina(Persona.Types.S)); }

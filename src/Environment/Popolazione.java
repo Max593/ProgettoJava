@@ -40,8 +40,8 @@ public class Popolazione {
     public void popGrowth() {
         int nGen = 1;  //Primissima generazione sicuramente la 1
         while(nGen <= 2000) {  //Numero cicli da diminuire
-            System.out.println(nGen);
             Generazione gen = popolazione.get(nGen);
+            System.out.println(nGen);
             System.out.println(popolazione.get(nGen));
             List<Femmina> femmine = gen.getListaFemmine();  //Dovrebbe attivarsi il synchronized già da questo accesso
 
@@ -152,9 +152,9 @@ public class Popolazione {
 
 
             //PROPORZIONE DEI TIPI RISPETTO AL SESSO
-            double PropP = (gen.getNumeroTipoP()/gen.getNumeroFemmine());
+            double PropP = ((double) gen.getNumeroTipoP()) / gen.getNumeroFemmine();  //PROBLEMA: esce 0 invece della divisione corretta
             double PropS = 1 - PropP;
-            double PropM = (gen.getNumeroTipoM()/gen.getNumeroMaschi());
+            double PropM = ((double) gen.getNumeroTipoM()) / gen.getNumeroMaschi();
             double PropA = 1 - PropM;
 
             //PAYOFF MEDI DEI SESSI
@@ -162,21 +162,21 @@ public class Popolazione {
             double AvgFemalePayoff = (PayoffPM*PropM*PropP) + (PayoffPA*PropP*PropA) + (PayoffSM*PropS*PropM) + (PayoffSA*PropA*PropS);
 
             //RATEO DI CRESCITA DI UN TIPO
-            double RateP = PropP(((PayoffPM*PropM) + (PayoffPA*PropA)) - AvgFemalePayoff);
-            double RateS = PropS(((PayoffSM*PropM) + (PayoffSA*PropA)) - AvgFemalePayoff);
-            double RateM = PropM(((PayoffMP*PropP) + (PayoffMS*PropS)) - AvgMalePayoff);
-            double RateA = PropA(((PayoffAP*PropP) + (PayoffAS*PropS)) - AvgMalePayoff);
+            double RateP = PropP*(((PayoffPM*PropM) + (PayoffPA*PropA)) - AvgFemalePayoff);
+            double RateS = PropS*(((PayoffSM*PropM) + (PayoffSA*PropA)) - AvgFemalePayoff);
+            double RateM = PropM*(((PayoffMP*PropP) + (PayoffMS*PropS)) - AvgMalePayoff);
+            double RateA = PropA*(((PayoffAP*PropP) + (PayoffAS*PropS)) - AvgMalePayoff);
 
             //NUMERI FINALI
 
-            int GrowthRateP = gen.getNumeroTipoP() + gen.getNumeroTipoP()*RateP;
-            int GrowthRateS = gen.getNumeroTipoS() + gen.getNumeroTipoS()*RateS;
-            int GrowthRateM = gen.getNumeroTipoM() + gen.getNumeroTipoM()*RateM;
-            int GrowthRateA = gen.getNumeroTipoA() + gen.getNumeroTipoA()*RateA;
+            Double GrowthRateP = gen.getNumeroTipoP() + gen.getNumeroTipoP()*RateP;
+            Double GrowthRateS = gen.getNumeroTipoS() + gen.getNumeroTipoS()*RateS;
+            Double GrowthRateM = gen.getNumeroTipoM() + gen.getNumeroTipoM()*RateM;
+            Double GrowthRateA = gen.getNumeroTipoA() + gen.getNumeroTipoA()*RateA;
 
 
             nGen += 1;
-            popolazione.put(nGen, new Generazione(GrowthRateP, GrowthRateS, GrowthRateM, GrowthRateA);
+            popolazione.put(nGen, new Generazione(GrowthRateP.intValue(), GrowthRateS.intValue(), GrowthRateM.intValue(), GrowthRateA.intValue()));
         }
 
     }
