@@ -45,6 +45,7 @@ public class Popolazione {
             System.out.println(popolazione.get(nGen));
             List<Femmina> femmine = gen.getListaFemmine();  //Dovrebbe attivarsi il synchronized già da questo accesso
 
+            /*
             Function<List<Femmina>, Femmina> randPartnerPicker = l -> {  //Cerca la prima femmina non occupata che può trovare
                 int index = new Random().nextInt(femmine.size());  //Valore random
                 Femmina female = femmine.get(index);  //Recupera una femmina random
@@ -97,6 +98,8 @@ public class Popolazione {
             }
             service.shutdown();
             while(!service.isTerminated()) {}  //Fa schifo
+
+
             int countP = 0;
             int countS = 0;
             int countM = 0;
@@ -133,9 +136,47 @@ public class Popolazione {
                     else { countS += 1; }
                 }
             }
+*/
+            //FORMULE PAYOFF UOMINI
+            double PayoffMP = a - (b/2) - c;
+            double PayoffMS = a - (b/2);
+            double PayoffAP = 0;
+            double PayoffAS = a;
+
+            //FORMULE PAYOFF DONNE
+            double PayoffPM = a - (b/2) - c;
+            double PayoffPA = 0;
+            double PayoffSM = a - (b/2);
+            double PayoffSA = a-b;
+
+
+
+            //PROPORZIONE DEI TIPI RISPETTO AL SESSO
+            double PropP = (gen.getNumeroTipoP()/gen.getNumeroFemmine());
+            double PropS = 1 - PropP;
+            double PropM = (gen.getNumeroTipoM()/gen.getNumeroMaschi());
+            double PropA = 1 - PropM;
+
+            //PAYOFF MEDI DEI SESSI
+            double AvgMalePayoff = (PayoffMP*PropM*PropP) + (PayoffMS*PropM*PropS) + (PayoffAP*PropA*PropP) + (PayoffAS*PropA*PropS);
+            double AvgFemalePayoff = (PayoffPM*PropM*PropP) + (PayoffPA*PropP*PropA) + (PayoffSM*PropS*PropM) + (PayoffSA*PropA*PropS);
+
+            //RATEO DI CRESCITA DI UN TIPO
+            double RateP = PropP(((PayoffPM*PropM) + (PayoffPA*PropA)) - AvgFemalePayoff);
+            double RateS = PropS(((PayoffSM*PropM) + (PayoffSA*PropA)) - AvgFemalePayoff);
+            double RateM = PropM(((PayoffMP*PropP) + (PayoffMS*PropS)) - AvgMalePayoff);
+            double RateA = PropA(((PayoffAP*PropP) + (PayoffAS*PropS)) - AvgMalePayoff);
+
+            //NUMERI FINALI
+
+            int GrowthRateP = gen.getNumeroTipoP() + gen.getNumeroTipoP()*RateP;
+            int GrowthRateS = gen.getNumeroTipoS() + gen.getNumeroTipoS()*RateS;
+            int GrowthRateM = gen.getNumeroTipoM() + gen.getNumeroTipoM()*RateM;
+            int GrowthRateA = gen.getNumeroTipoA() + gen.getNumeroTipoA()*RateA;
+
 
             nGen += 1;
-            popolazione.put(nGen, new Generazione(countP, countS, countM, countA));
+            popolazione.put(nGen, new Generazione(GrowthRateP, GrowthRateS, GrowthRateM, GrowthRateA);
         }
 
     }
