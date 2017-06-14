@@ -7,12 +7,7 @@ import People.Persona;
  */
 public class Main {
     public static void main(String[] args) {
-        /*
-        Popolazione p = new Popolazione();
-        p.costruisciPopolazione();
-        p.popGrowth();
-        */
-        Popolazione p = new Popolazione();
-        p.popGrowth2();
+        ALLMATH.Popolazione popolazione = new ALLMATH.Popolazione();
+        popolazione.popGrowth2();
     }
 }
