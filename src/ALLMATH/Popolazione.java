@@ -32,8 +32,8 @@ public class Popolazione {
         B12 = 0;
         B21 = a - b/2;
         B22 = a - b;
-        stabFP = (B22 - B12) / (B11 - B21 - B12 + B22);
-        stabMM = (A22 - A12) / (A11 - A21 - A12 + A22);
+        stabMM = (B22 - B12) / (B11 - B21 - B12 + B22);
+        stabFP = (A22 - A12) / (A11 - A21 - A12 + A22);
         Scanner scan  = new Scanner(System.in);
         int P = scan.nextInt();
         int S = scan.nextInt();
@@ -64,8 +64,8 @@ public class Popolazione {
             double Ws = a + (numFP/numFemmine)*B21 + (numFS/numFemmine)*B22;
             double Wu = (numMM/numMaschi)*Wm + (numMA/numMaschi)*Wa;
             double Wd = (numFP/numFemmine)*Wp + (numFS/numFemmine)*Ws;
-            double incM = (numMM/numMaschi)*((Wm-Wu)/Wu);
-            double incA = (numMA/numMaschi)*((Wa-Wu)/Wu);
+            double incM = -1*(numMM/numMaschi)*((Wm-Wu)/Wu);
+            double incA = -1*(numMA/numMaschi)*((Wa-Wu)/Wu);
             double incP = (numFP/numFemmine)*((Wp-Wd)/Wd);
             double incS = (numFS/numFemmine)*((Ws-Wd)/Wd);
 
