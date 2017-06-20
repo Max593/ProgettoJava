@@ -36,6 +36,9 @@ public class Popolazione {
         this.B12 = 0;
         this.B21 = a - b/2;
         this.B22 = a - b;
+        if(((A22 - A12) / (A11 - A21 - A12 + A22)<=0 )  || ((A22 - A12) / (A11 - A21 - A12 + A22)>=1 )
+                ||((B22 - B12) / (B11 - B21 - B12 + B22)<=0 )  || ((B22 - B12) / (B11 - B21 - B12 + B22)>=1 )) { throw new IllegalArgumentException(); }
+        /*
         try{
         	if(((A22 - A12) / (A11 - A21 - A12 + A22)<=0 )  || ((A22 - A12) / (A11 - A21 - A12 + A22)>=1 )
                     ||((B22 - B12) / (B11 - B21 - B12 + B22)<=0 )  || ((B22 - B12) / (B11 - B21 - B12 + B22)>=1 )   ) throw new ArithmeticException();
@@ -58,19 +61,20 @@ public class Popolazione {
 					    this.B22 = a - b;
 					}
 
-		}
+		}*/
         stabFP = (A22 - A12) / (A11 - A21 - A12 + A22);
         stabMM = (B22 - B12) / (B11 - B21 - B12 + B22);
         System.out.println("PERCENTUALE DI STABILITA P = "+stabFP);
         System.out.println("PERCENTUALE DI STABILITA M = "+stabMM);
-        System.out.println("INSERISCI TIPO M , A , P , S");
+        //System.out.println("INSERISCI TIPO M , A , P , S");
         Generazione gen = new Generazione(M, A, P, S);
         testStrategia(gen);
-        popolazione.put(1, gen);  //1 dato che � sicuramente la prima
+        popolazione.put(1, gen);  //1 dato che è sicuramente la prima
+        popGrowth();
 
     }
 
-    public void popGrowth2() {
+    public void popGrowth() {
         int nGen = 1;
         while(nGen < 2000) {
             Generazione gen = popolazione.get(nGen);
