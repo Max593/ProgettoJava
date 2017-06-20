@@ -1,5 +1,6 @@
 package GUI;
 
+import Environment.Popolazione;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -12,8 +13,10 @@ public class Gui extends Application{
     }
 
     private static Stage stage;
+    private static Popolazione popolazione;
 
     public static Stage getStage() { return stage; }
+    public static void setPopolazione(Popolazione pop) { popolazione = pop; }
 
     @Override
     public void start(Stage primaryStage){

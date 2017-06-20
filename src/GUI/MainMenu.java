@@ -52,6 +52,7 @@ public class MainMenu {
                 for(int el : elems) { if(el <= 0) { throw new IllegalArgumentException(); } }
 
                 Popolazione pop = new Popolazione(va, vb, vc, vM, vA, vP, vS);
+                Gui.setPopolazione(pop);
             } catch (IllegalArgumentException ignore) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning"); alert.setHeaderText(null); alert.setContentText("Valore non corretto");
