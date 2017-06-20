@@ -1,4 +1,3 @@
-package People;
 
 public class Maschio extends Persona{
 

@@ -1,5 +1,3 @@
-package People;
-
 
 public class Persona {
 
@@ -28,4 +26,3 @@ public class Persona {
 
 
 }
-
