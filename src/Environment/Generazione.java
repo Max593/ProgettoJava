@@ -1,3 +1,4 @@
+package Environment;
 
 public class Generazione {
 
@@ -10,7 +11,7 @@ public class Generazione {
     private double numeroTotale;
 
     //METODI COSTRUTTORI
-    public  Generazione( double numeroTipoP , double numeroTipoS , double numeroTipoM , double numeroTipoA){
+    public  Generazione( double numeroTipoM , double numeroTipoA , double numeroTipoP , double numeroTipoS){
 
         this.numeroTipoP = numeroTipoP;
         this.numeroTipoS = numeroTipoS;
@@ -33,6 +34,7 @@ public class Generazione {
 
     //METODO INFORMAZIONI OGGETTO
     public String toString() {
-        return getClass().getName()+" [ "+"NUMERO TIPO P = "+numeroTipoP+" , NUMERO TIPO S = "+numeroTipoS+" , NUMERO TIPO M = "+numeroTipoM+" ,NUMERO TIPO A = "+numeroTipoA+" ]";
+        return getClass().getName()+" [ "+"NUMERO TIPO M = "+numeroTipoM+" ," +
+                " NUMERO TIPO A = "+numeroTipoA+" , NUMERO TIPO P = "+numeroTipoP+" ,NUMERO TIPO S = "+numeroTipoS+" ]";
     }
 }

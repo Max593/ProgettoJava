@@ -1,3 +1,4 @@
+package Environment;
 
 import java.util.*;
 
@@ -22,12 +23,11 @@ public class Popolazione {
 
     private Map<Integer, Generazione> popolazione = new HashMap<>();  //Record di ogni generazione passata, numerata con la chiave
 
-    public Popolazione() throws ArithmeticException {
-        Scanner scan1  = new Scanner(System.in);
+    public Popolazione(int a, int b, int c, int M, int A, int P, int S) throws ArithmeticException {
         System.out.println("INSERIRE VALORI A , B , C");
-        this.a = scan1.nextInt();
-        this.b = scan1.nextInt();
-        this.c = scan1.nextInt();
+        this.a = ((double)a);
+        this.b = ((double)b);
+        this.c = ((double)c);
         this.A11 = a - b/2 - c;
         this.A12 = a - b/2;
         this.A21 = 0;
@@ -37,9 +37,11 @@ public class Popolazione {
         this.B21 = a - b/2;
         this.B22 = a - b;
         try{
-        	if(((A22 - A12) / (A11 - A21 - A12 + A22)<=0 )  || ((A22 - A12) / (A11 - A21 - A12 + A22)>=1 ) ||((B22 - B12) / (B11 - B21 - B12 + B22)<=0 )  || ((B22 - B12) / (B11 - B21 - B12 + B22)>=1 )   ) throw new ArithmeticException();
+        	if(((A22 - A12) / (A11 - A21 - A12 + A22)<=0 )  || ((A22 - A12) / (A11 - A21 - A12 + A22)>=1 )
+                    ||((B22 - B12) / (B11 - B21 - B12 + B22)<=0 )  || ((B22 - B12) / (B11 - B21 - B12 + B22)>=1 )   ) throw new ArithmeticException();
         }catch (ArithmeticException e) {
-					while(((A22 - A12) / (A11 - A21 - A12 + A22)<=0 )  || ((A22 - A12) / (A11 - A21 - A12 + A22)>=1 ) ||((B22 - B12) / (B11 - B21 - B12 + B22)<=0 )  || ((B22 - B12) / (B11 - B21 - B12 + B22)>=1 ) ){
+					while(((A22 - A12) / (A11 - A21 - A12 + A22)<=0 )  || ((A22 - A12) / (A11 - A21 - A12 + A22)>=1 )
+                            ||((B22 - B12) / (B11 - B21 - B12 + B22)<=0 )  || ((B22 - B12) / (B11 - B21 - B12 + B22)>=1 ) ){
 						System.out.println("VALORI NON AMMESSI........");
 						Scanner scan2  = new Scanner(System.in);
 					    System.out.println("INSERIRE VALORI A , B , C");
@@ -61,20 +63,12 @@ public class Popolazione {
         stabMM = (B22 - B12) / (B11 - B21 - B12 + B22);
         System.out.println("PERCENTUALE DI STABILITA P = "+stabFP);
         System.out.println("PERCENTUALE DI STABILITA M = "+stabMM);
-        Scanner scan  = new Scanner(System.in);
-        System.out.println("INSERISCI TIPO P , S , M , A");
-        int P = scan.nextInt();
-        int S = scan.nextInt();
-        int M = scan.nextInt();
-        int A = scan.nextInt();
-        Generazione gen = new Generazione(P, S, M, A);
+        System.out.println("INSERISCI TIPO M , A , P , S");
+        Generazione gen = new Generazione(M, A, P, S);
         testStrategia(gen);
         popolazione.put(1, gen);  //1 dato che � sicuramente la prima
 
     }
-    /*public Popolazione() {  //Valori standard di Dawkins
-        this(15, 20, 3);
-    }*/
 
     public void popGrowth2() {
         int nGen = 1;
@@ -129,7 +123,7 @@ public class Popolazione {
             Double newS = numFS + numFS * incS;
 
             nGen += 1;
-            popolazione.put(nGen, new Generazione(newP, newS, newM, newA));
+            popolazione.put(nGen, new Generazione(newM, newA, newP, newS));
         }
     }
     

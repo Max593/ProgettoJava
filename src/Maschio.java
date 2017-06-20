@@ -1,10 +1,9 @@
-
-public class Maschio extends Persona{
+public class Maschio extends Persona {
 
     //COSTRUTTORI
-    public Maschio(Types type) {
+    public Maschio(Persona.Types type) {
         setType(type);
-        setGender(Genders.MALE);
+        setGender(Persona.Genders.MALE);
     }
 
     //METODO INFORMAZIONI OGGETTO
