@@ -17,6 +17,7 @@ public class Gui extends Application{
 
     public static Stage getStage() { return stage; }
     public static void setPopolazione(Popolazione pop) { popolazione = pop; }
+    public static Popolazione getPopolazione() { return popolazione; }
 
     @Override
     public void start(Stage primaryStage){

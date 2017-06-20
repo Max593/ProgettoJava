@@ -58,7 +58,7 @@ public class MainMenu {
                 alert.setTitle("Warning"); alert.setHeaderText(null); alert.setContentText("Valore non corretto");
                 alert.showAndWait();
             }
-
+            Graph.Graph();
         });
 
         Gui.getStage().setScene(new Scene(mainW));

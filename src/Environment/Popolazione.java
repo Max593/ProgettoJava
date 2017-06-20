@@ -190,4 +190,6 @@ public class Popolazione {
 
     }
 
+    public Map<Integer, Generazione> getMap() { return popolazione; }
+
 }
