@@ -19,10 +19,10 @@ public class Graph {
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Generazione");
-        final LineChart<Number,Number> lineChart =
-                new LineChart<Number,Number>(xAxis,yAxis);
+        final LineChart<Number,Number> lineChart = new LineChart<Number,Number>(xAxis,yAxis);
 
         lineChart.setTitle("Popolazione");
+        lineChart.setCreateSymbols(false);
         XYChart.Series series = new XYChart.Series();
         series.setName("M");
         for(int i = 1; i <= gens.entrySet().size(); i++) {
