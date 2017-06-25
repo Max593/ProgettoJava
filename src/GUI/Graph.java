@@ -19,16 +19,16 @@ public class Graph {
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Generazione");
-        final LineChart<Number,Number> lineChart = new LineChart<Number,Number>(xAxis,yAxis);
+        final LineChart<Number,Number> lineChart = new LineChart<>(xAxis,yAxis);
 
         lineChart.setTitle("Popolazione");
         lineChart.setCreateSymbols(false);
-        XYChart.Series series = new XYChart.Series();
-        series.setName("M");
+        XYChart.Series seriesM = new XYChart.Series();
+        seriesM.setName("M");
         for(int i = 1; i <= gens.entrySet().size(); i++) {
-            series.getData().add(new XYChart.Data(i, (gens.get(i).getNumeroTipoM()/gens.get(i).getNumeroMaschi())));
+            seriesM.getData().add(new XYChart.Data(i, (gens.get(i).getNumeroTipoM()/gens.get(i).getNumeroMaschi())));
         }
-        lineChart.getData().add(series);
+        lineChart.getData().add(seriesM);
 
         Scene v = new Scene(lineChart);
         Gui.getStage().setScene(v);

@@ -21,7 +21,7 @@ import java.util.List;
 public class MainMenu {
     public static void MainMenu() {
         Label a = new Label("A"), b = new Label("B"), c = new Label("C"),
-                spacer1 = new Label(""), val = new Label("Valori"), spacer3 = new Label("");
+                spacer1 = new Label(""), val = new Label("Valori");
         Label M = new Label("M"), A = new Label("A"), P = new Label("P"),
                 S = new Label("S"), pers = new Label("Persone"), spacer2 = new Label("");
         Region spacer = new Region();
