@@ -24,7 +24,7 @@ public class MainMenu {
                 spacer1 = new Label(""), val = new Label("Valori");
         Label M = new Label("M"), A = new Label("A"), P = new Label("P"),
                 S = new Label("S"), spacer2 = new Label(""), pers = new Label("Persone");
-        Region spacer = new Region();
+        Region spacer = new Region();  //Spacer tra i pulsanti in basso alla finestra, si adatta alla finestra.
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
         TextField aF = new TextField(), bF = new TextField(), cF = new TextField();
