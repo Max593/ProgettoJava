@@ -23,17 +23,16 @@ public class MainMenu {
         Label a = new Label("A"), b = new Label("B"), c = new Label("C"),
                 spacer1 = new Label(""), val = new Label("Valori");
         Label M = new Label("M"), A = new Label("A"), P = new Label("P"),
-                S = new Label("S"), pers = new Label("Persone"), spacer2 = new Label("");
+                S = new Label("S"), spacer2 = new Label(""), pers = new Label("Persone");
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
         TextField aF = new TextField(), bF = new TextField(), cF = new TextField();
         TextField Mf = new TextField(), Af = new TextField(), Pf = new TextField(), Sf = new TextField();
+        Button Default = new Button("Default"), OK = new Button("Ok"), Exit = new Button("Exit");
         HBox values = new HBox(10, spacer1, a, b, c), valuesIN = new HBox(10, val, aF, bF, cF);
         HBox persone = new HBox(10, spacer2, M, A, P, S), personeIN = new HBox(10, pers, Mf, Af, Pf, Sf);
-        Button Default = new Button("Default"), OK = new Button("Ok"), Exit = new Button("Exit");
-        HBox buttons = new HBox(10, Default, spacer, Exit, OK);
-        buttons.setAlignment(Pos.BOTTOM_RIGHT);
+        HBox buttons = new HBox(10, Default, spacer, Exit, OK); buttons.setAlignment(Pos.BOTTOM_RIGHT);
 
         VBox mainW = new VBox(10, values, valuesIN, persone, personeIN, buttons);
         mainW.setPadding(new Insets(12,12,12,12));
@@ -75,34 +74,18 @@ public class MainMenu {
         Exit.setOnAction(e -> Gui.getStage().close());
 
         {
-            val.setPrefWidth(50);
-            pers.setPrefWidth(50);
-            spacer1.setPrefWidth(50);
-            spacer2.setPrefWidth(50);
-            a.setPrefWidth(100);
-            a.setAlignment(Pos.CENTER);
-            b.setPrefWidth(100);
-            b.setAlignment(Pos.CENTER);
-            c.setPrefWidth(100);
-            c.setAlignment(Pos.CENTER);
-            M.setPrefWidth(100);
-            M.setAlignment(Pos.CENTER);
-            A.setPrefWidth(100);
-            A.setAlignment(Pos.CENTER);
-            P.setPrefWidth(100);
-            P.setAlignment(Pos.CENTER);
-            S.setPrefWidth(100);
-            S.setAlignment(Pos.CENTER);
-            aF.setPrefWidth(100);
-            bF.setPrefWidth(100);
-            cF.setPrefWidth(100);
-            Mf.setPrefWidth(100);
-            Af.setPrefWidth(100);
-            Pf.setPrefWidth(100);
-            Sf.setPrefWidth(100);
-            Default.setPrefWidth(60);
-            OK.setPrefWidth(60);
-            Exit.setPrefWidth(60);
+            for(Label i : Arrays.asList(val, pers, spacer1, spacer2)) {
+                i.setStyle("-fx-font-weight: bold; -fx-pref-width: 50");
+            }
+            for(Label i : Arrays.asList(a, b, c, M, A, P, S)) {
+                i.setStyle("-fx-pref-width: 100; -fx-alignment: center");
+            }
+            for(TextField i : Arrays.asList(aF, bF, cF, Mf, Af, Pf, Sf)) {
+                i.setStyle("-fx-pref-width: 100");
+            }
+            for(Button i : Arrays.asList(Default, OK, Exit)) {
+                i.setStyle("-fx-pref-width: 60");
+            }
         }
 
         Gui.getStage().setTitle("Impostazioni");
