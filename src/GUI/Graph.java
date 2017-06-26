@@ -38,6 +38,7 @@ public class Graph {
         }
 
         Scene v = new Scene(lineChart);
+        Gui.getStage().setTitle("Grafo");
         Gui.getStage().setScene(v);
     }
 }

@@ -1,7 +1,8 @@
+package Incontri;
 
 public class Persona {
 
-    public enum Types {P,S,M,A}
+    public enum Types {M,A,P,S}
     public enum Genders {FEMALE,MALE}
 
     private Types type;

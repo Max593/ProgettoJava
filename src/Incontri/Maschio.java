@@ -1,3 +1,5 @@
+package Incontri;
+
 public class Maschio extends Persona {
 
     //COSTRUTTORI
