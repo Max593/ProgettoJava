@@ -58,7 +58,8 @@ public class MainMenu {
                 alert.setTitle("Warning"); alert.setHeaderText(null); alert.setContentText("Valore non corretto");
                 alert.showAndWait();
             }
-            Graph.Graph();
+            Graph.Graph(Integer.parseInt(Mf.getText()), Integer.parseInt(Af.getText()),
+                    Integer.parseInt(Pf.getText()), Integer.parseInt(Sf.getText()));
         });
 
         Default.setOnAction(e -> {
@@ -89,7 +90,6 @@ public class MainMenu {
             Default.setPrefWidth(80);
         }
 
-        Gui.getStage().setTitle("Impostazioni");
-        Gui.getStage().setScene(new Scene(mainW));
+        Gui.getStage().setTitle("Impostazioni"); Gui.getStage().setScene(new Scene(mainW));
     }
 }

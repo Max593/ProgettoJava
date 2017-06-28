@@ -8,8 +8,11 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -18,7 +21,7 @@ import java.util.Map;
  * Created by max on 20/06/17.
  */
 public class Graph {
-    public static void Graph() {
+    public static void Graph(int M, int A, int P, int S) {
         Map<Integer, Generazione> gens = Gui.getPopolazione().getMap();  //
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
@@ -50,11 +53,21 @@ public class Graph {
         HBox bottomBox = new HBox(10, Back, Exit);
         bottomBox.setAlignment(Pos.BOTTOM_RIGHT);
 
+        Label details = new Label("Dettagli: "); details.setStyle("-fx-font-weight: bold");
+        Text text = new Text("Popolazione iniziale:"+
+                "\nM: "+M+
+                "\nA: "+A+
+                "\nP: "+P+
+                "\nS: "+S);
+        VBox detailsBox = new VBox(10, details, text);
+        //detailsBox.setAlignment(Pos.CENTER);
+
         BorderPane panel = new BorderPane(lineChart); panel.setPadding(new Insets(12,12,12,12));
         panel.setBottom(bottomBox);
+        panel.setRight(detailsBox);
 
         Scene scene = new Scene(panel);
-        Gui.getStage().setTitle("Grafo");
-        Gui.getStage().setScene(scene);
+        Gui.getStage().setTitle("Grafo"); Gui.getStage().setScene(scene);
+
     }
 }
