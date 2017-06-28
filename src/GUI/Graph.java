@@ -21,7 +21,7 @@ import java.util.Map;
  * Created by max on 20/06/17.
  */
 public class Graph {
-    public static void Graph(int M, int A, int P, int S) {
+    public static void Graph(int M, int A, int P, int S, int a, int b, int c) {
         Map<Integer, Generazione> gens = Gui.getPopolazione().getMap();  //
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
@@ -58,7 +58,11 @@ public class Graph {
                 "\nM: "+M+
                 "\nA: "+A+
                 "\nP: "+P+
-                "\nS: "+S);
+                "\nS: "+S+"\n"+
+                "\nValori di payoff: "+
+                "\na: "+a+
+                "\nb: "+b+
+                "\nc: "+c);
         VBox detailsBox = new VBox(10, details, text);
         //detailsBox.setAlignment(Pos.CENTER);
 

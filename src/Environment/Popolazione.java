@@ -124,7 +124,7 @@ public class Popolazione {
             nGen += 1;
             popolazione.put(nGen, new Generazione(newM, newA, newP, newS));
 
-            if(stabMM-0.01<numMM/numMaschi || numMM/numMaschi<stabMM+0.01 &&
+            if(stabMM-0.01<numMM/numMaschi || numMM/numMaschi<stabMM+0.01 &&  //Intorno della stabilità
                     stabFP-0.01<numFP/numFemmine || numFP<stabFP+0.01) { counter += 1; }
         }
     }

@@ -36,7 +36,7 @@ public class MainMenu {
         HBox buttons = new HBox(10, Default, spacer, Exit, OK); buttons.setAlignment(Pos.BOTTOM_RIGHT);
 
         VBox mainW = new VBox(10, values, valuesIN, persone, personeIN, buttons);
-        mainW.setPadding(new Insets(12,12,12,12));
+        mainW.setStyle("-fx-padding: 12 12 12 12");
 
         OK.setOnAction(e -> {  //Tenere in conto il CheckBox nel caso introduciamo gli incontri
             try {
@@ -60,7 +60,8 @@ public class MainMenu {
                 alert.showAndWait();
             }
             Graph.Graph(Integer.parseInt(Mf.getText()), Integer.parseInt(Af.getText()),
-                    Integer.parseInt(Pf.getText()), Integer.parseInt(Sf.getText()));
+                    Integer.parseInt(Pf.getText()), Integer.parseInt(Sf.getText()),
+                    Integer.parseInt(aF.getText()), Integer.parseInt(bF.getText()), Integer.parseInt(cF.getText()));
         });
 
         Default.setOnAction(e -> {
