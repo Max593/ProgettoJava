@@ -124,6 +124,10 @@ public class Popolazione {
             popolazione.put(nGen, new Generazione(newM, newA, newP, newS));
         }
     }
+
+    public void popGrowthIncontri() {  //Nel caso introduciamo gli incontri
+
+    }
     
     public void testStrategia(Generazione gen) {
 

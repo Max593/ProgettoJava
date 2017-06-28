@@ -29,15 +29,16 @@ public class MainMenu {
 
         TextField aF = new TextField(), bF = new TextField(), cF = new TextField();
         TextField Mf = new TextField(), Af = new TextField(), Pf = new TextField(), Sf = new TextField();
+        CheckBox cb = new CheckBox("Incontri");  //Nel caso introduciamo gli incontri (switch)
         Button Default = new Button("Default"), OK = new Button("Ok"), Exit = new Button("Exit");
-        HBox values = new HBox(10, spacer1, a, b, c), valuesIN = new HBox(10, val, aF, bF, cF);
+        HBox values = new HBox(10, spacer1, a, b, c), valuesIN = new HBox(10, val, aF, bF, cF, cb);
         HBox persone = new HBox(10, spacer2, M, A, P, S), personeIN = new HBox(10, pers, Mf, Af, Pf, Sf);
         HBox buttons = new HBox(10, Default, spacer, Exit, OK); buttons.setAlignment(Pos.BOTTOM_RIGHT);
 
         VBox mainW = new VBox(10, values, valuesIN, persone, personeIN, buttons);
         mainW.setPadding(new Insets(12,12,12,12));
 
-        OK.setOnAction(e -> {
+        OK.setOnAction(e -> {  //Tenere in conto il CheckBox nel caso introduciamo gli incontri
             try {
                 int va = Integer.valueOf(aF.getText());
                 int vb = Integer.valueOf(bF.getText());
