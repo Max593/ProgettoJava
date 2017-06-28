@@ -1,10 +1,15 @@
 package GUI;
 
 import Environment.Generazione;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -18,6 +23,7 @@ public class Graph {
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Generazione");
+        yAxis.setLabel("Percentuale");
         final LineChart<Number,Number> lineChart = new LineChart<>(xAxis,yAxis);
 
         lineChart.setTitle("Popolazione");
@@ -37,8 +43,18 @@ public class Graph {
             lineChart.getData().add(i);
         }
 
-        Scene v = new Scene(lineChart);
+        Button Back = new Button("Back");
+        Button Exit = new Button("Exit");
+        Back.setOnAction(e ->  MainMenu.MainMenu());
+        Exit.setOnAction(e -> Gui.getStage().close());
+        HBox bottomBox = new HBox(10, Back, Exit);
+        bottomBox.setAlignment(Pos.BOTTOM_RIGHT);
+
+        BorderPane panel = new BorderPane(lineChart); panel.setPadding(new Insets(12,12,12,12));
+        panel.setBottom(bottomBox);
+
+        Scene scene = new Scene(panel);
         Gui.getStage().setTitle("Grafo");
-        Gui.getStage().setScene(v);
+        Gui.getStage().setScene(scene);
     }
 }

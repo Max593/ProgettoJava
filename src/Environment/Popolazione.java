@@ -66,7 +66,6 @@ public class Popolazione {
         stabMM = (B22 - B12) / (B11 - B21 - B12 + B22);
         System.out.println("PERCENTUALE DI STABILITA P = "+stabFP);
         System.out.println("PERCENTUALE DI STABILITA M = "+stabMM);
-        //System.out.println("INSERISCI TIPO M , A , P , S");
         Generazione gen = new Generazione(M, A, P, S);
         testStrategia(gen);
         popolazione.put(1, gen);  //1 dato che è sicuramente la prima
@@ -76,7 +75,7 @@ public class Popolazione {
 
     public void popGrowth() {
         int nGen = 1;
-        while(nGen < 2000) {
+        while(nGen < 250) {
             Generazione gen = popolazione.get(nGen);
             System.out.println(gen);
             System.out.println("PERCENTUALE DI STABILITA P = "+stabFP);
@@ -115,11 +114,6 @@ public class Popolazione {
                 incP = -1*((numFP/numFemmine)*((Wp-Wd)/Wd));
                 incS = -1*((numFS/numFemmine)*((Ws-Wd)/Wd));
             }
-            
-            //System.out.println("INCREMENTO M : " + incM);
-            //System.out.println("INCREMENTO A : " + incA);
-            //System.out.println("INCREMENTO P : " + incP);
-            //System.out.println("INCREMENTO S : " + incS);
 
             Double newM = numMM + numMM * incM;
             Double newA = numMA + numMA * incA;

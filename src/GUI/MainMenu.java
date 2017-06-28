@@ -75,7 +75,7 @@ public class MainMenu {
 
         {
             for(Label i : Arrays.asList(val, pers, spacer1, spacer2)) {
-                i.setStyle("-fx-font-weight: bold; -fx-pref-width: 50");
+                i.setStyle("-fx-font-weight: bold; -fx-pref-width: 60");
             }
             for(Label i : Arrays.asList(a, b, c, M, A, P, S)) {
                 i.setStyle("-fx-pref-width: 100; -fx-alignment: center");
@@ -83,9 +83,10 @@ public class MainMenu {
             for(TextField i : Arrays.asList(aF, bF, cF, Mf, Af, Pf, Sf)) {
                 i.setStyle("-fx-pref-width: 100");
             }
-            for(Button i : Arrays.asList(Default, OK, Exit)) {
+            for(Button i : Arrays.asList(OK, Exit)) {
                 i.setStyle("-fx-pref-width: 60");
             }
+            Default.setPrefWidth(80);
         }
 
         Gui.getStage().setTitle("Impostazioni");
