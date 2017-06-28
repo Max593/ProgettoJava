@@ -75,7 +75,8 @@ public class Popolazione {
 
     public void popGrowth() {
         int nGen = 1;
-        while(nGen < 250) {
+        int counter = 0;
+        while(counter <= 50) {
             Generazione gen = popolazione.get(nGen);
             System.out.println(gen);
             System.out.println("PERCENTUALE DI STABILITA P = "+stabFP);
@@ -122,6 +123,9 @@ public class Popolazione {
 
             nGen += 1;
             popolazione.put(nGen, new Generazione(newM, newA, newP, newS));
+
+            if(stabMM-0.01<numMM/numMaschi || numMM/numMaschi<stabMM+0.01 &&
+                    stabFP-0.01<numFP/numFemmine || numFP<stabFP+0.01) { counter += 1; }
         }
     }
 
