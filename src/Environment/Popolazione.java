@@ -24,7 +24,6 @@ public class Popolazione {
     private Map<Integer, Generazione> popolazione = new HashMap<>();  //Record di ogni generazione passata, numerata con la chiave
 
     public Popolazione(int a, int b, int c, int M, int A, int P, int S) throws ArithmeticException {
-        System.out.println("INSERIRE VALORI A , B , C");
         this.a = ((double)a);
         this.b = ((double)b);
         this.c = ((double)c);
@@ -37,31 +36,9 @@ public class Popolazione {
         this.B21 = a - b/2;
         this.B22 = a - b;
         if(((A22 - A12) / (A11 - A21 - A12 + A22)<=0 )  || ((A22 - A12) / (A11 - A21 - A12 + A22)>=1 )
-                ||((B22 - B12) / (B11 - B21 - B12 + B22)<=0 )  || ((B22 - B12) / (B11 - B21 - B12 + B22)>=1 )) { throw new IllegalArgumentException(); }
-        /*
-        try{
-        	if(((A22 - A12) / (A11 - A21 - A12 + A22)<=0 )  || ((A22 - A12) / (A11 - A21 - A12 + A22)>=1 )
-                    ||((B22 - B12) / (B11 - B21 - B12 + B22)<=0 )  || ((B22 - B12) / (B11 - B21 - B12 + B22)>=1 )   ) throw new ArithmeticException();
-        }catch (ArithmeticException e) {
-					while(((A22 - A12) / (A11 - A21 - A12 + A22)<=0 )  || ((A22 - A12) / (A11 - A21 - A12 + A22)>=1 )
-                            ||((B22 - B12) / (B11 - B21 - B12 + B22)<=0 )  || ((B22 - B12) / (B11 - B21 - B12 + B22)>=1 ) ){
-						System.out.println("VALORI NON AMMESSI........");
-						Scanner scan2  = new Scanner(System.in);
-					    System.out.println("INSERIRE VALORI A , B , C");
-					    this.a = scan2.nextInt();
-					    this.b = scan2.nextInt();
-					    this.c = scan2.nextInt();
-					    this.A11 = a - b/2 - c;
-					    this.A12 = a - b/2;
-					    this.A21 = 0;
-					    this.A22 = a;
-					    this.B11 = a - b/2 - c;
-					    this.B12 = 0;
-					    this.B21 = a - b/2;
-					    this.B22 = a - b;
-					}
+                ||((B22 - B12) / (B11 - B21 - B12 + B22)<=0 )
+                || ((B22 - B12) / (B11 - B21 - B12 + B22)>=1 )) { throw new IllegalArgumentException(); }
 
-		}*/
         stabFP = (A22 - A12) / (A11 - A21 - A12 + A22);
         stabMM = (B22 - B12) / (B11 - B21 - B12 + B22);
         System.out.println("PERCENTUALE DI STABILITA P = "+stabFP);
@@ -69,7 +46,6 @@ public class Popolazione {
         Generazione gen = new Generazione(M, A, P, S);
         testStrategia(gen);
         popolazione.put(1, gen);  //1 dato che è sicuramente la prima
-        popGrowth();
 
     }
 
@@ -130,10 +106,69 @@ public class Popolazione {
     }
 
     public void popGrowthIncontri() {  //Nel caso introduciamo gli incontri
+        int nGen = 1;
+        Random rand = new Random();  //Per ogni calcolo che richiede random
+
+        while(nGen < 50) {
+            Generazione gen = popolazione.get(nGen);
+            System.out.println(gen);
+            int figli = 0;
+            double M = gen.getNumeroTipoM(), A = gen.getNumeroTipoA(),
+                   P = gen.getNumeroTipoP(), S = gen.getNumeroTipoS();
+            int payM = 0, payA = 0, payP = 0, payS = 0;
+
+            for(int c = 0; c < 3; c++) {  //Cicli per generazione
+
+                for(int i = 0; i < gen.getNumeroMaschi(); i++) {
+                    if(P == 0 && S == 0) { break; }  //Sono finite le femmine
+
+                    if(M != 0 && (A == 0 || rand.nextBoolean())) {  //Maschi M
+                        M -= 1;  //Ridotta chance di selezionare M
+                        if(P != 0 && (rand.nextBoolean() || S == 0)) {  //Femmine P
+                            figli += 1;
+                            P -= 2;  //Occupata per sempre + chance di essere selezionata
+                            payM += 2; payP += 2;
+                        }
+                        else {  //Femmine S
+                            int nascita = rand.nextInt(1)+1;  //Tra 1 e 2 figli
+                            figli += nascita;
+                            payM += 5*nascita; payS += 5*nascita;
+                            S -= 1;
+                        }
+                    }
+                    else {  //Maschi A non interagiscono con femmine A (occasione persa)
+                        A -= 1;  //Ridotta chance di selezionare A
+                        if(rand.nextBoolean()) {  //Femmine S
+                            S -= 1;
+                            int nascita = rand.nextInt(1)+1;  //Tra 1 e 2 figli
+                            figli += nascita;
+                            payA += 15*nascita; payS += -5*nascita;
+                        }
+                    }
+                }
+
+            }
+
+            nGen += 1;
+            popolazione.put(nGen, nextGen(figli, payM, payA, payP, payS));
+        }
 
     }
-    
-    public void testStrategia(Generazione gen) {
+
+    private Generazione nextGen(int f, int pM, int pA, int pP, int pS) {  //Calcoli apparentemente errati
+        double percM = (double)pM/(pM+pA);
+        double percP = (pS <= 0) ? 0.9 : (double)pP/(pP+pS);
+
+        double M = (double)f/2 * percM;
+        double A = (double)f/2 * (1 - percM);
+
+        double P = (double)f/2 * percP;
+        double S = (double)f/2 * (1 - percP);
+
+        return new Generazione(M, A, P, S);
+    }
+
+    private void testStrategia(Generazione gen) {
 
             double numFemmine = gen.getNumeroFemmine();
             double numMaschi = gen.getNumeroMaschi();
