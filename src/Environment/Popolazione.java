@@ -136,7 +136,7 @@ public class Popolazione {
                             S -= 1;
                         }
                     }
-                    else {  //Maschi A non interagiscono con femmine A (occasione persa)
+                    else {  //Maschi A non interagiscono con femmine P (occasione persa)
                         A -= 1;  //Ridotta chance di selezionare A
                         if(rand.nextBoolean()) {  //Femmine S
                             S -= 1;
